@@ -23,6 +23,6 @@ From [openwrt](https://labs.mediatek.com/en/platform/linkit-smart-7688) website 
 3. Put downloaded files and this repository in the same folder and change directory to this folder
 4. Build instructions:
 ```
-	docker build -t linkitfull -f Dockerfile_full_env .
+	docker build -t linkitfull -f Dockerfile_full_env . --build-arg OPENWRT_FILE=<path_to_openwrt tar/folder>
 	docker run -it linkitfull 
 ```

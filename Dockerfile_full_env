@@ -48,7 +48,7 @@ VOLUME /opt
 WORKDIR /opt
 
 # Get the Openwrt code
-ADD openwrt-15.05.tar.gz /opt/
+ADD $OPENWRT_FILE  /opt/
 RUN cd /opt/openwrt*/ && cp feeds.conf.default feeds.conf && \
 				echo src-git linkit https://github.com/MediaTek-Labs/linkit-smart-7688-feed.git >> feeds.conf
 RUN cd /opt/openwrt*/ && ./scripts/feeds update && ./scripts/feeds install -a
