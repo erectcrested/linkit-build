@@ -46,21 +46,10 @@ RUN apt-get install -y git g++ libncurses5-dev subversion libssl-dev gawk \
 # Set the working directory to /opt/
 VOLUME /opt
 WORKDIR /opt
-RUN wget https://launchpad.net/ubuntu/+archive/primary/+files/libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb && dpkg -i libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb
 
 # Get the Openwrt code
-RUN rm -rf /opt/openwrt*
-ADD openwrt-15.05.tar.gz /opt/
-RUN cd /opt/openwrt-HEAD-6e73473/ && cp feeds.conf.default feeds.conf && \
-				echo src-git linkit https://github.com/MediaTek-Labs/linkit-smart-7688-feed.git >> feeds.conf
-RUN cd /opt/openwrt-HEAD-6e73473/ && ./scripts/feeds update && ./scripts/feeds install -a
-ADD config /opt/config-openwrt
-RUN cd /opt/openwrt-HEAD-6e73473/ && make defconfig
-
 RUN mkdir /opt/sdk/
 ADD OpenWrt-SDK-ramips-mt7688_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2 /opt/sdk/
 
 RUN mkdir /opt/toolchain/
-ADD OpenWrt-Toolchain-ramips-mt7688_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2 /opt/toolchain/
-
-RUN mkdir /opt/app
+ADD OpenWrt-Toolchain-ramips-mt7688_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2 /opt/
